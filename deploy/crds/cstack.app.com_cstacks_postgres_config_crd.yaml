@@ -1,0 +1,51 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: cstacksconfig.cstack.app.com
+spec:
+  group: cstack.app.com
+  names:
+    kind: CStackConfig
+    listKind: CStackConfigList
+    plural: cstacksconfig
+    singular: cstackconfig
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: CStackConfig is the Schema for the cstacksconfig API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+            spec:
+              description: CStackConfigSpec defines the desired state of CStack
+              properties:
+                access_secret:
+                  type: string
+                access_key:
+                  type: string
+                endpoint:
+                  type: string
+                selector:
+                  matchLabels:
+                    provider: Npgsql
+        status:
+          description: CStackConfigStatus defines the observed state of CStack
+          type: object
+      type: object
+  version: v1
+  versions:
+    - name: v1
+      served: true
+      storage: true

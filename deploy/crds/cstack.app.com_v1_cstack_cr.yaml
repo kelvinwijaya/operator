@@ -1,0 +1,14 @@
+apiVersion: cstack.app.com/v1
+kind: CStack
+metadata:
+  name: example-cstack1
+spec:
+# Add fields here
+  database: ""# MySQL, postgreSQL, mssql, msaccess
+  version:  ""# version of database
+  cluster: ""# single/master-slave/cluster
+  size: "small" #small/medium/large
+  selector:
+    provider: ""# name of your provider e.g. Npgsql, MySql.Data.MySqlClient, System.Data.SqlClient,
+status:
+  job: Created
